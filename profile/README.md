@@ -10,6 +10,8 @@ Egress Gateway is building network governance for AI agents and other untrusted 
 
 Agents can write code, install packages, and reach external services. Our goal is to keep those connections under platform control: where a workload can connect, which credentials it can use, and how its traffic is handled and audited—without relying on the code inside the container to cooperate.
 
+**Credential Replacement** is a core capability we're building: workloads use placeholder credentials, and the gateway replaces them with the appropriate upstream credentials only after verifying the workload's identity, destination, and access permissions. Real API keys and other service credentials stay outside the workload.
+
 We are starting with AI agents, with a foundation designed to work across container runtimes and agent frameworks on Kubernetes.
 
 ## What we're building
@@ -18,7 +20,7 @@ The project is organized around three planned repositories:
 
 | Component | Purpose |
 | --- | --- |
-| **Gateway** · `gateway` | Workload Proxy and Egress Gateway data planes for traffic handling, policy enforcement, and credential mediation. |
+| **Gateway** · `gateway` | Workload Proxy and Egress Gateway data planes for traffic handling, policy enforcement, and credential replacement. |
 | **Controller** · `controller` | Label-driven Pod enrollment, sidecar injection, and the Kubernetes configuration needed to connect workloads to the data plane. |
 | **CLI** · `cli` | Install and upgrade the system, inspect workloads, and diagnose connectivity and configuration. |
 
